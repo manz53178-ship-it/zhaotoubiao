@@ -6,6 +6,7 @@
   <meta name="description" content="智标协同：多 Agent 招投标全流程演示" />
   <title>智标协同 Agent Demo</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="login.css" />
 </head>
 <body>
   <div class="shell">
@@ -78,6 +79,8 @@
 
   <div class="modal" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><div class="upload-icon">⇧</div><h2>导入招标文件</h2><p>上传 PDF / Word，Agent 将自动解析并创建任务流</p><label class="drop"><input type="file" id="fileInput" accept=".pdf,.doc,.docx"/><strong>点击选择或拖拽文件</strong><span>单个文件最大 100 MB</span></label><button class="primary" id="demoImport">使用示例招标文件</button></div></div>
   <div class="toast" id="toast">已创建分析任务</div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
