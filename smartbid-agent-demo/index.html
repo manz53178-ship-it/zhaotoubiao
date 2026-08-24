@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="智标协同：多 Agent 招投标全流程演示" />
+  <title>智标协同 Agent Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">智</span><div><strong>智标协同</strong><small>Bid Intelligence OS</small></div></div>
+      <button class="new-project" id="newProject">＋ 新建投标项目</button>
+      <nav>
+        <p>工作台</p>
+        <a class="active" href="#">⌁ 项目驾驶舱</a><a href="#agents">✦ Agent 团队</a><a href="#outputs">▤ 成果中心</a>
+        <p>企业资产</p>
+        <a href="#">▣ 知识库</a><a href="#">◇ 资质证照</a><a href="#">￥ 报价规则</a><a href="#">◷ 历史项目</a>
+      </nav>
+      <div class="side-bottom"><span class="pulse"></span> 企业知识库已连接<small>238 份资料 · 刚刚同步</small></div>
+    </aside>
+
+    <main>
+      <header class="topbar"><div><span class="crumb">项目 /</span> 智慧园区一体化平台建设</div><div class="top-actions"><button class="icon-btn">⌕</button><button class="icon-btn">?</button><span class="avatar">林</span></div></header>
+      <section class="content">
+        <div class="project-head">
+          <div><div class="eyebrow">进行中的投标项目</div><h1>智慧园区一体化平台建设</h1><p>招标编号 ZHYC-2026-018 · 截止 2026-09-18 17:00</p></div>
+          <div class="score-ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34"/><circle class="meter" cx="40" cy="40" r="34"/></svg><div><strong>86</strong><small>赢单指数</small></div></div>
+        </div>
+
+        <div class="stats">
+          <div><span>需求条款</span><strong>128</strong><small>已解析 100%</small></div><div><span>强制响应</span><strong>23</strong><small class="ok">全部覆盖</small></div><div><span>风险项</span><strong>4</strong><small class="warn">2 项待确认</small></div><div><span>预计完成</span><strong>38<span class="unit">min</span></strong><small>比人工快约 92%</small></div>
+        </div>
+
+        <div class="grid">
+          <section class="panel workflow-panel">
+            <div class="panel-title"><div><span class="tag">LIVE</span><h2>多 Agent 协作现场</h2></div><button class="ghost" id="runBtn">▶ 重新运行</button></div>
+            <div class="progress-row"><span id="runLabel">方案编制中</span><strong id="progressText">68%</strong></div><div class="progress"><i id="progressBar"></i></div>
+            <div class="agents" id="agents">
+              <article class="agent done"><div class="agent-icon blue">析</div><div><strong>招标解析 Agent</strong><p>识别资格、技术、商务与评分条款</p><small>完成 · 输出 128 条结构化需求</small></div><b>✓</b></article>
+              <article class="agent done"><div class="agent-icon violet">知</div><div><strong>企业知识 Agent</strong><p>检索资质、案例、产品与技术资料</p><small>完成 · 命中 47 个可信证据</small></div><b>✓</b></article>
+              <article class="agent running" id="proposalAgent"><div class="agent-icon cyan">写</div><div><strong>方案编制 Agent</strong><p id="agentAction">正在生成技术方案第 6 章：数据治理...</p><small>运行中 · 12.4k tokens</small></div><b class="spinner"></b></article>
+              <article class="agent waiting" id="priceAgent"><div class="agent-icon amber">价</div><div><strong>报价测算 Agent</strong><p>基于 BOQ、历史价格与毛利边界测算</p><small>等待方案范围确认</small></div><b>04</b></article>
+              <article class="agent waiting" id="reviewAgent"><div class="agent-icon green">审</div><div><strong>合规评审 Agent</strong><p>逐条核验、交叉检查与评分模拟</p><small>等待上游任务</small></div><b>05</b></article>
+            </div>
+          </section>
+
+          <aside class="panel activity-panel">
+            <div class="panel-title"><h2>Agent 思考日志</h2><span class="live-dot">实时</span></div>
+            <div class="log" id="log">
+              <div><time>14:32:18</time><p><b>方案编制</b> 引用「数据中台产品白皮书 V3.2」回答数据标准体系要求。</p></div>
+              <div><time>14:31:54</time><p><b>企业知识</b> 找到 3 个同类园区案例，最高相关度 94%。</p></div>
+              <div><time>14:31:27</time><p><b>风险控制</b> “等保三级测评证书”将在 4 个月后到期，已标记复核。</p></div>
+              <div><time>14:30:42</time><p><b>招标解析</b> 发现星号条款 23 项，已加入强制响应矩阵。</p></div>
+            </div>
+            <div class="ask"><input id="askInput" placeholder="询问 Agent 团队..."/><button id="askBtn">↑</button></div>
+          </aside>
+        </div>
+
+        <section class="panel outputs" id="outputs">
+          <div class="panel-title"><div><div class="eyebrow">阶段性成果</div><h2>可审阅输出</h2></div><span class="autosave">✓ 自动保存</span></div>
+          <div class="tabs"><button class="active" data-tab="matrix">合规矩阵</button><button data-tab="proposal">技术方案</button><button data-tab="pricing">报价清单</button><button data-tab="score">模拟评分</button></div>
+          <div class="tab-content active" id="matrix">
+            <table><thead><tr><th>条款</th><th>招标要求</th><th>响应证据</th><th>状态</th><th>置信度</th></tr></thead><tbody>
+              <tr><td>★ 2.1.3</td><td>具备 CMMI 5 级认证</td><td>企业资质 / CMMI5_2025.pdf</td><td><span class="pill ok">已满足</span></td><td>99%</td></tr>
+              <tr><td>★ 3.4.1</td><td>近三年同类项目不少于 3 个</td><td>案例库 / 智慧园区项目 × 5</td><td><span class="pill ok">已满足</span></td><td>96%</td></tr>
+              <tr><td>4.2.6</td><td>支持国产化数据库适配</td><td>产品白皮书 § 7.3</td><td><span class="pill warn">需确认</span></td><td>78%</td></tr>
+            </tbody></table>
+          </div>
+          <div class="tab-content doc-preview" id="proposal"><h3>智慧园区一体化平台技术方案</h3><p>围绕“统一底座、数据融通、智能运营、安全可信”的总体思路，构建园区数字化运营体系。</p><ol><li>总体架构与建设原则</li><li>业务中台与数据治理</li><li>物联感知与智能运营</li><li>安全体系与实施保障</li></ol></div>
+          <div class="tab-content" id="pricing"><div class="price-grid"><div><span>软件与许可</span><strong>¥ 2,680,000</strong></div><div><span>实施与集成</span><strong>¥ 1,420,000</strong></div><div><span>三年运维</span><strong>¥ 720,000</strong></div><div class="total"><span>建议投标总价</span><strong>¥ 4,820,000</strong></div></div></div>
+          <div class="tab-content" id="score"><div class="score-card"><strong>86.4</strong><span>预测综合得分</span><p>技术 36.8 / 40 · 商务 27.6 / 30 · 价格 22.0 / 30</p><div class="bar"><i style="width:86.4%"></i></div><small>主要提升机会：国产化适配证明、项目经理履历、价格竞争力</small></div></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><div class="upload-icon">⇧</div><h2>导入招标文件</h2><p>上传 PDF / Word，Agent 将自动解析并创建任务流</p><label class="drop"><input type="file" id="fileInput" accept=".pdf,.doc,.docx"/><strong>点击选择或拖拽文件</strong><span>单个文件最大 100 MB</span></label><button class="primary" id="demoImport">使用示例招标文件</button></div></div>
+  <div class="toast" id="toast">已创建分析任务</div>
+  <script src="app.js"></script>
+</body>
+</html>
